@@ -1,0 +1,51 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float threshold_r : hint_range(0.0, 1.0) = 0.0;
+uniform float threshold_g : hint_range(0.0, 1.0) = 0.0;
+uniform float threshold_b : hint_range(0.0, 1.0) = 0.0;
+uniform float threshold : hint_range(0.0, 1.0) = 0.0;
+
+uniform vec4 spare_color : hint_color = vec4(1.0, 0.0, 0.0, 1.0);
+uniform float tolerance : hint_range(0.0, 1.0) = 0.1;
+
+void fragment() {
+    vec4 texture_color = texture(TEXTURE, UV);
+    vec3 orig_color = texture_color.rgb;
+
+    float r = clamp(orig_color.r + threshold_r, 0.0, 1.0);
+    float g = clamp(orig_color.g + threshold_g, 0.0, 1.0);
+    float b = clamp(orig_color.b + threshold_b, 0.0, 1.0);
+
+    // Conversão para luminância
+    float grayscale = dot(
+        vec3(r, g, b),
+        vec3(0.299, 0.587, 0.114)
+    );
+
+    grayscale = clamp(grayscale - threshold, 0.0, 1.0);
+
+    // Compara a cor da textura com a cor preservada
+    float difference = distance(spare_color.rgb, orig_color);
+
+    float spare_mask = 1.0 - step(tolerance, difference);
+
+    vec3 final_color = mix(
+        vec3(grayscale),
+        spare_color.rgb,
+        spare_mask
+    );
+
+    COLOR = vec4(final_color, texture_color.a);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/threshold_r = 0.0
+shader_param/threshold_g = 0.0
+shader_param/threshold_b = 0.0
+shader_param/threshold = 0.103
+shader_param/spare_color = Color( 1, 0, 0, 1 )
+shader_param/tolerance = 0.1

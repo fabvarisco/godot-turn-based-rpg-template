@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Shaders/BlackWhite.tres" type="Material" id=1]
+[ext_resource path="res://Assets/background/sky/cloud.png" type="Texture" id=2]
+[ext_resource path="res://Assets/background/floor/grass.png" type="Texture" id=3]
+[ext_resource path="res://Assets/background/bg/tree_orange.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Background.gd" type="Script" id=5]
+
+[node name="Background" type="Node2D"]
+material = ExtResource( 1 )
+position = Vector2( 45, 80 )
+scale = Vector2( 0.25, 1.14286 )
+script = ExtResource( 5 )
+
+[node name="Color" type="ColorRect" parent="."]
+margin_left = -180.0
+margin_top = -70.0
+margin_right = 180.0
+margin_bottom = 70.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Door" type="Node2D" parent="."]
+
+[node name="Bg" type="Node2D" parent="."]
+
+[node name="Sky" type="Node2D" parent="."]
+
+[node name="CheckerCarpetBlue" type="Sprite" parent="Sky"]
+material = ExtResource( 1 )
+position = Vector2( 0, -53.3749 )
+scale = Vector2( 1, 0.328124 )
+texture = ExtResource( 2 )
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="TreeOrange" type="Sprite" parent="Props"]
+material = ExtResource( 1 )
+position = Vector2( -52, -54.2499 )
+scale = Vector2( 1.72667, 0.262868 )
+texture = ExtResource( 4 )
+
+[node name="TreeOrange2" type="Sprite" parent="Props"]
+material = ExtResource( 1 )
+position = Vector2( 52, -55.9998 )
+scale = Vector2( 1.72667, 0.262868 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="Floor" type="Node2D" parent="."]
+
+[node name="Grass" type="Sprite" parent="Floor"]
+material = ExtResource( 1 )
+position = Vector2( -1.52588e-05, -33.8124 )
+scale = Vector2( 1, 0.220833 )
+texture = ExtResource( 3 )

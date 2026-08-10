@@ -9,19 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Button",
+"class": "ActionButton",
+"language": "GDScript",
+"path": "res://Scripts/ActionButton.gd"
+}, {
 "base": "Resource",
 "class": "BattleUnits",
 "language": "GDScript",
-"path": "res://BattleUnits.gd"
+"path": "res://Scripts/BattleUnits.gd"
 } ]
 _global_script_class_icons={
+"ActionButton": "",
 "BattleUnits": ""
 }
 
 [application]
 
-config/name="MobileRPG"
-run/main_scene="res://Battle.tscn"
+config/name="endless-turn-based-battle"
+run/main_scene="res://Scenes/Battle.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -35,12 +41,12 @@ window/stretch/aspect="keep"
 
 [gui]
 
-theme/custom="res://defaultTheme.tres"
-theme/custom_font="res://DefaultFont.tres"
+theme/custom="res://Theme/defaultTheme.tres"
+theme/custom_font="res://Theme/DefaultFont.tres"
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Theme/default_env.tres"

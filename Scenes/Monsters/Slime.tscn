@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Monsters/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/actor/boss/color_variant/electric_rat_yellow.png" type="Texture" id=2]
+[ext_resource path="res://Shaders/BlackWhite.tres" type="Material" id=3]
+
+[node name="Slime" instance=ExtResource( 1 )]
+hp = 35
+damage = 3
+
+[node name="Sprite" parent="." index="0"]
+material = ExtResource( 3 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+
+[node name="HPLabel" parent="." index="1"]
+margin_left = -15.0
+margin_top = -26.0
+margin_right = 17.0
+margin_bottom = -12.0
+text = "35hp"
+
+[node name="HoverInfo" parent="." index="3"]
+description = "Slime"
